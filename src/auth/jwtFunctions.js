@@ -12,6 +12,12 @@ const createToken = (password) => {
   return token;
 };
 
+const createTokenWithoutPassword = (userWithoutPassword) => {
+  const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig);
+  return token;
+};
+
 module.exports = {
   createToken,
+  createTokenWithoutPassword,
 };
