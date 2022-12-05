@@ -12,10 +12,10 @@ const createUser = async (req, res) => {
   try {
     const newUser = req.body;
     const { user, token } = await UserService.createUser(newUser);
-    if (!user) res.status(409).json({ message: 'User already registered' });
+    if (!user) return res.status(409).json({ message: 'User already registered' });
     return res.status(201).json({ token });
   } catch (erro) {
-    res.status(500).json({
+    return res.status(500).json({
       message: 'Erro ao salvar o usuário no banco',
       error: erro.message,
     });
