@@ -31,10 +31,10 @@ module.exports = (sequelize, DataTypes) => {
 
    BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, 
-      { foreignKey: 'userId', as: 'Usuarios' });
+      { foreignKey: 'userId', as: 'user' });
 
     BlogPost.hasMany(models.PostCategory,
-      { foreignKey:'postId', as: 'Post' });
+      { foreignKey:'postId', as: 'Categoriesbd' });
    };
 
   return BlogPost;
