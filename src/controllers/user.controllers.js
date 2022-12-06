@@ -1,5 +1,4 @@
 const UserService = require('../services/user.service');
-// const { verifyToken } = require('../auth/jwtFunctions');
 
 const loginUser = async (req, res) => {
   const login = req.body;
@@ -25,10 +24,6 @@ const createUser = async (req, res) => {
 const getAllUsers = async (_req, res) => {
   try {
     const user = await UserService.getAllUsers();
-
-    // const { authorization } = req.headers;
-    // const payload = verifyToken(authorization);
-    // if (payload.isError) return res.status(401).json({ message: 'Expired or invalid token' });
 
     return res.status(200).json(user);
   } catch (erro) {
