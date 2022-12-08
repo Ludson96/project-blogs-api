@@ -13,6 +13,21 @@ const getAllBlogPost = async () => BlogPost.findAll({
     }],
 });
 
+const getBlogPostById = async (id) => BlogPost.findOne({
+  where: { id },
+  include: [{
+    model: User,
+    as: 'user',
+    attributes: { exclude: ['password'] },
+  },
+  {
+    model: Category,
+    as: 'categories',
+    through: { attributes: [] },
+  }], 
+});
+
 module.exports = {
   getAllBlogPost,
+  getBlogPostById,
 };
