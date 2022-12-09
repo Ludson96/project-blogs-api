@@ -30,7 +30,7 @@ app.get('/post/:id', validateJWT, blogPostController.getBlogPostById);
 
 app.put('/post/:id', validateJWT, validateInputBlogPostUpdated, blogPostController.updateBlogPost);
 
-app.delete('/post/:id', validateJWT);
+app.delete('/user/me', validateJWT, UserController.deleteUser);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

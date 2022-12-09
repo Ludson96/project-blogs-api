@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const { createToken } = require('../auth/jwtFunctions');
+const { createToken, verifyToken } = require('../auth/jwtFunctions');
 
 const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ where: { email, password } });
@@ -25,9 +25,18 @@ const getUserById = async (id) => {
   return user;
 };
 
+const deleteUser = async (authorization) => {
+  const { data: { id } } = verifyToken(authorization);
+  const user = await User.destroy(
+    { where: { id } },
+    );
+  return user;
+};
+
 module.exports = {
   loginUser,
   createUser,
   getAllUsers,
   getUserById,
+  deleteUser,
 };
