@@ -30,7 +30,6 @@ const getBlogPostById = async (id) => BlogPost.findOne({
 
 const updateBlogPost = async (id, { title, content }, req) => {
   const blogPost = await getBlogPostById(id);
-  console.log('Eu sou o blogPost: ', blogPost.userId);
   const idUser = req.user.id; 
   if (blogPost.userId === idUser) {
   await BlogPost.update({ title, content }, { where: { id } });
@@ -76,10 +75,25 @@ const createPost = async ({ title, content, categoryIds }, req) => {
   return newPost;
 };
 
+const deletePost = async (id, req) => {
+  const blogPost = await getBlogPostById(id);
+  const idUser = req.user.id; 
+  if (blogPost.userId === idUser) {
+    const postDeleted = await BlogPost.destroy(
+      { where: { id } },
+    );
+  
+    return postDeleted;
+  }
+
+  return null;
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
   updateBlogPost,
   searchBlogPost,
   createPost,
+  deletePost,
 };

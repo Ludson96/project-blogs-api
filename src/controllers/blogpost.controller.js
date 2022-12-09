@@ -68,10 +68,30 @@ const createPost = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const blogPost = await blogPostService.getBlogPostById(id);
+    if (!blogPost) return res.status(404).json({ message: 'Post does not exist' });
+
+    const postDeleted = await blogPostService.deletePost(id, req);
+    if (postDeleted) return res.status(204).end();  
+
+    return res.status(401).json({ message: 'Unauthorized user' });
+  } catch (erro) {
+    return res.status(500).json({
+      message: 'Erro ao tentar deletar um post',
+      erro: erro.message,
+    });
+  }
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
   updateBlogPost,
   searchBlogPost,
   createPost,
+  deletePost,
 };
