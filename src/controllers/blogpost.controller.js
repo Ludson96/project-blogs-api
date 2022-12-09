@@ -41,8 +41,22 @@ const updateBlogPost = async (req, res) => {
   }
 };
 
+const searchBlogPost = async (req, res) => {
+  try {
+    const { q } = req.query;
+    const searchedPost = await blogPostService.searchBlogPost(q);
+    return res.status(200).json(searchedPost);
+  } catch (erro) {
+    return res.status(500).json({
+      message: 'Não foi possivel pesquisar pelo titulo',
+      erro: erro.message,
+    });
+  }
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
   updateBlogPost,
+  searchBlogPost,
 };

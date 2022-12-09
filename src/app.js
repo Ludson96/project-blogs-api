@@ -12,6 +12,8 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/post/search', validateJWT, blogPostController.searchBlogPost);
+
 app.post('/login', validateEmailPwd, UserController.loginUser);
 
 app.post('/user', validateInputUser, UserController.createUser);
