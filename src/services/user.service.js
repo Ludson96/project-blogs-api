@@ -3,6 +3,7 @@ const { createToken, verifyToken } = require('../auth/jwtFunctions');
 
 const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ where: { email, password } });
+  if (!user) return { user: null, token: null };
   const { password: _password, ...userWithoutPassword } = user.dataValues;
   const token = createToken(userWithoutPassword);
   return { user, token };
