@@ -7,12 +7,7 @@ const jwtConfig = {
   expiresIn: '15min',
 };
 
-const createToken = (password) => {
-  const token = jwt.sign({ data: password }, secret, jwtConfig);
-  return token;
-};
-
-const createTokenWithoutPassword = (userWithoutPassword) => {
+const createToken = (userWithoutPassword) => {
   const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig);
   return token;
 };
@@ -28,6 +23,5 @@ const verifyToken = (authorization) => {
 
 module.exports = {
   createToken,
-  createTokenWithoutPassword,
   verifyToken,
 };

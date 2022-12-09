@@ -26,7 +26,23 @@ const getBlogPostById = async (req, res) => {
   }
 };
 
+const updateBlogPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const conteudo = req.body;
+    const postUpdated = await blogPostService.updateBlogPost(id, conteudo, req);
+    if (postUpdated) return res.status(200).json(postUpdated);  
+    return res.status(401).json({ message: 'Unauthorized user' });
+  } catch (erro) {
+    return res.status(500).json({
+      message: 'Não foi possivel atualizar o post',
+      erro: erro.message,
+    });
+  }
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
+  updateBlogPost,
 };

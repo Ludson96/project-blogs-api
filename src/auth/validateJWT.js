@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-// const { User } = require('../models');
+const { User } = require('../models');
 require('dotenv/config');
 
 const secret = process.env.JWT_SECRET || 'seusecretdetoken';
@@ -10,12 +10,13 @@ module.exports = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: 'Token not found' });
 
   try {
-    jwt.verify(token, secret);
-    // const user = await User.findByPk(decoded.data.id);
+    const decoded = jwt.verify(token, secret);
+    console.log('decoded', decoded);
+    const user = await User.findByPk(decoded.data.id);
 
-    // if (!user) return res.status(401).json({ message: 'Erro ao procurar usuário do token' });
+    if (!user) return res.status(401).json({ message: 'Erro ao procurar usuário do token' });
 
-    // req.user = user;
+    req.user = user;
     next();
   } catch (erro) {
     return res.status(401).json({ message: 'Expired or invalid token' });
