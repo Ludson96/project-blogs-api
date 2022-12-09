@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, User, Category } = require('../models');
+const { BlogPost, User, Category, PostCategory } = require('../models');
 
 const getAllBlogPost = async () => BlogPost.findAll({
   include: [{
@@ -58,9 +58,28 @@ const searchBlogPost = async (q) => {
   return searchedPost;
 };
 
+const createPost = async ({ title, content, categoryIds }, req) => {
+  const { rows } = await Category.findAndCountAll();
+  const isIdValid = rows.every(({ dataValues: { id } }) => categoryIds.includes(id));
+
+  if (!isIdValid) return null;
+
+  const userId = req.user.id;
+  
+  const newPost = await BlogPost.create({ title, content, userId });
+
+  const newPostCategory = await categoryIds.map((id) => 
+    PostCategory.create({ postId: newPost.id, categoryId: id }));
+  
+    await Promise.all(newPostCategory);
+
+  return newPost;
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
   updateBlogPost,
   searchBlogPost,
+  createPost,
 };

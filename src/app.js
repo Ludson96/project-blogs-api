@@ -7,6 +7,7 @@ const validateJWT = require('./auth/validateJWT');
 const CategoryController = require('./controllers/category.controllers');
 const validateInputCategory = require('./middlewares/validateInputCategory');
 const blogPostController = require('./controllers/blogpost.controller');
+const validateInputNewBlogPost = require('./middlewares/validateInputNewBlogPost');
 
 const app = express();
 
@@ -33,6 +34,8 @@ app.get('/post/:id', validateJWT, blogPostController.getBlogPostById);
 app.put('/post/:id', validateJWT, validateInputBlogPostUpdated, blogPostController.updateBlogPost);
 
 app.delete('/user/me', validateJWT, UserController.deleteUser);
+
+app.post('/post', validateJWT, validateInputNewBlogPost, blogPostController.createPost);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

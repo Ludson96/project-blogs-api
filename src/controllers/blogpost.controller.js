@@ -54,9 +54,24 @@ const searchBlogPost = async (req, res) => {
   }
 };
 
+const createPost = async (req, res) => {
+  try {
+    const insert = req.body;
+    const newPost = await blogPostService.createPost(insert, req);
+    if (!newPost) return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+    return res.status(201).json(newPost);
+  } catch (erro) {
+    return res.status(500).json({
+      message: 'Erro ao tentar criar um post',
+      erro: erro.message,
+    });
+  }
+};
+
 module.exports = {
   getAllBlogPost,
   getBlogPostById,
   updateBlogPost,
   searchBlogPost,
+  createPost,
 };
