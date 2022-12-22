@@ -90,18 +90,240 @@ Outra forma de executar é utilizando o `nodemom` (permite fazer alteração em 
 
 ---
 
-## Usage
-
-Since this is a simple back-end project, there's no front-end.
-Using `StoreManager` DB (`migration.sql` and `seed.sql`).
+## Endpoints
 
 <details>
 
+###  Rota de Login
 
- </details>
+####  POST `/login`
+- Entrar
+- O corpo deve ser o seguinte:
+```json
+{
+  "email" : " exemplo@email.com " ,
+  "senha" : " 123456 "
+}
+```
+  - Retorna um token se o login for concluído
+
+###  Rota do Usuário
+
+####  POST `/usuário`
+- Cria um novo usuário
+- O corpo deve ser o seguinte, onde:
+  -  `displayName` deve ter pelo menos 8 caracteres
+  -  `email` deve ter um formato válido
+  -  `password` deve ter pelo menos 6 caracteres
+  -  `imagem` é opcional
+```json
+{
+  "displayName" : " John Doe " ,
+  "email" : " exemplo@email.com " ,
+  "senha" : " 123456 " ,
+  "image" : " https://cdn1.iconfinder.com/data/icons/users-solid-1/30/users-solid-profile-neutral-5-512.png "
+}
+```
+- Se o usuário for criado com sucesso, um token é fornecido
+
+####  GET `/usuário`
+- Lista todos os usuários:
+```json
+[
+  {
+    "id" : 1 ,
+    "displayName" : " Lewis Hamilton " ,
+    "email" : " lewishamilton@gmail.com " ,
+    "image" : " https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg "
+  },
+  /* ... */
+]
+```
+
+####  GET `/user/:id`
+- Pega um parâmetro numérico, e se houver algum usuário com id correspondente, retorna:
+```json
+{
+  "id" : 3 ,
+  "displayName" : " John Doe " ,
+  "email" : " exemplo@email.com " ,
+  "image" : " https://cdn1.iconfinder.com/data/icons/users-solid-1/30/users-solid-profile-neutral-5-512.png "
+}
+```
+
+####  DELETE `/user/me`
+- Exclui o usuário atual
+- Se o usuário for excluído com sucesso, o status `204` é retornado
+
+###  Categorias Rota
+
+####  POST `/categorias`
+- Cria uma nova categoria
+- O corpo deve ser o seguinte:
+```json
+{
+  "name" : " Truques de mágica "
+}
+```
+
+####  GET `/categorias`
+- Lista todas as categorias:
+```json
+[
+  {
+      "id" : 1 ,
+      "nome" : " Animais "
+  },
+  {
+      "id" : 2 ,
+      "nome" : " Livros "
+  },
+  /* ... */
+]
+```
+
+###  Pós Rota
+
+####  POST `/post`
+- Cria uma nova postagem no blog
+- O corpo deve ser o seguinte:
+```json
+{
+  "title" : " Resenha: A arte da columbofilia " ,
+  "content" : " Este é um ótimo livro sobre como os pombos podem ser treinados para se tornarem campeões! " ,
+  "categoryIds" : [ 1 , 2 ]
+}
+```
+
+####  GET `/post`
+- Lista todas as postagens do blog:
+```json
+[
+  {
+    "id" : 1 ,
+    "title" : " As melhores raças de cães para caça " ,
+    "content" : " Aqui estão os melhores companheiros de caça " ,
+    "userId" : 1 ,
+    "publicado" : " 2011-08-01T19:58:00.000Z " ,
+    "atualizado" : " 2011-08-01T19:58:51.000Z " ,
+    "usuário" : {
+      "id" : 1 ,
+      "displayName" : " Lewis Hamilton " ,
+      "email" : " lewishamilton@gmail.com " ,
+      "image" : " https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg "
+    },
+    "categorias" : [
+      {
+        "id" : 1 ,
+        "nome" : " Animais "
+      }
+    ]
+  },
+  
+  /* ... */
+]
+```
+
+####  GET `/post/:id`
+- Pega um parâmetro numérico, e se houver algum post com um id correspondente, retorna:
+```json
+{
+  "id" : 1 ,
+  "title" : " As melhores raças de cães para caça " ,
+  "content" : " Aqui estão os melhores companheiros de caça " ,
+  "userId" : 1 ,
+  "publicado" : " 2011-08-01T19:58:00.000Z " ,
+  "atualizado" : " 2011-08-01T19:58:51.000Z " ,
+  "usuário" : {
+      "id" : 1 ,
+      "displayName" : " Lewis Hamilton " ,
+      "email" : " lewishamilton@gmail.com " ,
+      "image" : " https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg "
+  },
+  "categorias" : [
+      {
+          "id" : 1 ,
+          "nome" : " Animais "
+      }
+  ]
+}
+```
+
+####  GET `/post/search?q=:searchTerm`
+- Pesquisa postagens por título ou conteúdo, por exemplo:
+```json
+  // GET /post/search?q=silk
+  [
+    {
+      "id" : 2 ,
+      "title" : " Ótimos livros sobre a Rota da Seda " ,
+      "content" : " Estes são alguns livros obrigatórios sobre a Rota da Seda " ,
+      "userId" : 1 ,
+      "publicado" : " 2011-08-01T19:58:00.000Z " ,
+      "atualizado" : " 2011-08-01T19:58:51.000Z " ,
+      "usuário" : {
+        "id" : 1 ,
+        "displayName" : " Lewis Hamilton " ,
+        "email" : " lewishamilton@gmail.com " ,
+        "image" : " https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg "
+      },
+      "categorias" : [
+        {
+          "id" : 2 ,
+          "nome" : " Livros "
+        }
+      ]
+    }
+  ]
+```
+- Se não houver parâmetro de consulta, retorna todos os posts:
+```json
+  // GET /post/search?q=
+  [
+    {
+      "id" : 1 ,
+      "title" : " As melhores raças de cães para caça " ,
+      "content" : " Aqui estão os melhores companheiros de caça " ,
+      "userId" : 1 ,
+      "publicado" : " 2011-08-01T19:58:00.000Z " ,
+      "atualizado" : " 2011-08-01T19:58:51.000Z " ,
+      "usuário" : {
+        "id" : 1 ,
+        "displayName" : " Lewis Hamilton " ,
+        "email" : " lewishamilton@gmail.com " ,
+        "image" : " https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg "
+      },
+      "categorias" : [
+        {
+          "id" : 1 ,
+          "nome" : " Cães "
+        }
+      ]
+    },
+    
+    /* ... */
+  ]
+```
+
+####  COLOQUE `/post/:id`
+- Edita uma postagem existente
+- O corpo deve ser o seguinte, onde:
+  - não é possível alterar a categoria
+  - somente o **autor** pode editar a postagem
+```json
+{
+  "title" : " Como fazer crescer as plantas da sua casa " ,
+  "content" : " Este é um guia passo a passo para melhorar o crescimento de plantas em ambientes internos "
+}
+```
+
+####  APAGAR `/post/:id`
+- Exclui uma postagem existente
+- Somente o autor pode deletar o post
+- Se a postagem for excluída com sucesso, retorna o status `204`
 
 
-> Primeiro projeto usando a `arquitetura MSC` e testes com `mocha`, `chai` e `sinon`
+</details>
 
 > `docker-compose.yml`, `config.js` e `/seeders` arquivos providos pela Trybe.
 
