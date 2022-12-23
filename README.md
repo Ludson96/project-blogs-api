@@ -31,11 +31,13 @@
 ---
 
 ## O que foi desenvolvido
-
-Uma API e um banco de dados, utilizando a arquitetura MSC (model-service-controller), para a produção de conteúdo para um blog!
-1 - Desenvolvi endpoints que estarão conectados ao banco de dados seguindo os princípios do REST;
-2 - Para fazer um post é necessário usuário e login, portanto foi trabalhada a relação entre user e post;
-3 - Será necessária a utilização de categorias para os posts, trabalhando, assim, a relação de posts para categories e de categories para posts.
+<p> 
+ Uma API e um banco de dados, utilizando a arquitetura MSC (model-service-controller), para a produção de conteúdo para um blog! <br>
+ 
+ 1. Desenvolvi endpoints que estarão conectados ao banco de dados seguindo os princípios do REST;<br>
+ 2. Para fazer um post é necessário usuário e login, portanto foi trabalhada a relação entre user e post; <br>
+ 3. Será necessária a utilização de categorias para os posts, trabalhando, assim, a relação de posts para categories e de categories para posts. <br>
+</p>
 
 ---
 
