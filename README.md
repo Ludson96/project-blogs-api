@@ -1,35 +1,21 @@
 # Repositório do projeto Blogs API
-
  ## Módulo: BACK-END
  
   Repositório possui projeto desenvolvido no período que estive na <b>Trybe</b>, abordando os conceitos de <b>RESTFul API</b> com CRUD completo utilizando arquitetura Model-Service-Controller (MSC). 
-  
 ## Informações de aprendizados
-- Este é um projeto desenvolvido para me ajudar a aprender sobre sequelize e JWT.
+- Este é um projeto desenvolvido para me ajudar a aprender sobre `sequelize` e `JWT`.
 - Meu primeiro projeto usando `sequelize` e `JWT`
+## Linguagem usadas
 
-
-  
----
-
-### Linguagem usadas
-
-![JavaScript][JavaScript.io]
-
-[![NodeJS][NodeJS.io]][NodeJS-url]
-
-[![Express][Express.io]][Express-url]
-
-[![JWT][JWT.io]][JWT-url]
-
-[![MySQL][MySQL.io]][MySQL-url]
-
-[![Sequelize][Sequelize.io]][Sequelize-url]
-
-[![Docker][Docker.io]][Docker-url]
-
----
-
+[![JavaScript][JavaScript-logo]][JavaScript-url]
+[![NodeJS][NodeJS-logo]][NodeJS-url]
+[![Express][Express-logo]][Express-url]
+[![MySQL][MySQL-logo]][MySQL-url]
+[![Sequelize][Sequelize-logo]][Sequelize-url]
+[![JWT][JWT-logo]][JWT-url]
+[![Docker][Docker-logo]][Docker-url]
+[![Nodemon][Nodemon-logo]][Nodemon-url]
+[![ESLint][ESLint-logo]][ESLint-url]
 ## O que foi desenvolvido
 <p> 
  Uma API e um banco de dados, utilizando a arquitetura MSC (model-service-controller), para a produção de conteúdo para um blog! <br>
@@ -39,21 +25,18 @@
  3. Será necessária a utilização de categorias para os posts, trabalhando, assim, a relação de posts para categories e de categories para posts. <br>
 </p>
 
----
+> `docker-compose.yml`, `config.js` e `/seeders` arquivos providos pela Trybe.
 
 ## Variáveis de Ambiente
 
-Para rodar esse projeto, atente-se as variáveis de ambiente no seu .env
-
----
-
-### Instruções para instalar e rodar
+Para rodar esse projeto, atente-se as variáveis de ambiente no seu .env. Existe um arquivo `.env.example` com as informações para configuração.
+## Instruções para instalar e rodar
 
 1. Clone o repo:
 ```
   git clone git@github.com:Ludson96/project-blogs-api.git
 ```
-2. Já existe um arquivo docker-compose.yml (Disponibilizado pela Trybe). Bastando usar o comando docker-compose up para rodar o MySQL e o Node pelo docker. Execute os services do docker: `node` e `db` 
+2. Já existe um arquivo docker-compose.yml. Bastando usar o comando docker-compose up para rodar o MySQL e o Node pelo docker. Execute os services do docker: `node` e `db` 
 ```
   docker-compose up -d
 ```
@@ -61,7 +44,7 @@ Para rodar esse projeto, atente-se as variáveis de ambiente no seu .env
 ```
   docker exec -it blogs_api bash
 ```
-4. Instale as suas dependencias:
+4. Instale as suas dependências:
 ```
   npm install
 ```
@@ -74,24 +57,18 @@ Outra forma de executar é utilizando o `nodemom` (permite fazer alteração em 
 ```
   npm run debug
 ```
-6. Utilizar alguma Plataforma de API para acessar os endpoints e fazer seus devidos experimentos. Exemplos: Postman e Insomnia. Ou uma extensão no VSCode, recomendo utlizar a thunder client.
+6. Utilizar alguma Plataforma de API para acessar os endpoints e fazer seus devidos experimentos. Exemplos: Postman e Insomnia. Ou uma extensão no VSCode, recomendo utilizar a thunder client.
 
 7. Uso
 
-- utiline o comando `npm run prestart`, ele criará o banco de dados e as tabelas de acordo com o que está em `/migrations` e `/seeders` .
+- utilize o comando `npm run prestart`, ele criará o banco de dados e as tabelas de acordo com o que está em `/migrations` e `/seeders` .
 
 - Todas as rotas (exceto `post /login` e `post /user` ) requerem autenticação
-
----
-
 ## Diagrama
 
 ![Diagrama de relacionamentos das tabelas](diagrama.png)
 
-<i> Imagem disponibilizada pela Trybe </i>
-
----
-
+> _Imagem disponibilizada pela Trybe_
 ## Endpoints
 
 <details>
@@ -324,21 +301,23 @@ Outra forma de executar é utilizando o `nodemom` (permite fazer alteração em 
 - Somente o autor pode deletar o post
 - Se a postagem for excluída com sucesso, retorna o status `204`
 
-
 </details>
 
-> `docker-compose.yml`, `config.js` e `/seeders` arquivos providos pela Trybe.
-
-[JavaScript.io]: https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black
-[Express.io]: https://img.shields.io/badge/express-000000?style=flat-square&logo=express&logoColor=white
-[Express-url]: https://expressjs.com
-[Sequelize.io]: https://img.shields.io/badge/sequelize-52B0E7?style=flat-square&logo=sequelize&logoColor=white
-[Sequelize-url]: https://sequelize.org
-[JWT.io]: https://img.shields.io/badge/jwt-000000?style=flat-square&logo=jsonwebtokens&logoColor=white
-[JWT-url]: https://jwt.io
-[NodeJS.io]: https://img.shields.io/badge/node.js-339933?style=flat-square&logo=node.js&logoColor=white
+[JavaScript-logo]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[JavaScript-url]: https://www.javascript.com/
+[NodeJS-logo]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
 [NodeJS-url]: https://nodejs.org/en/
-[MySQL.io]: https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white
-[MySQL-url]: https://www.mysql.com
-[Docker.io]: https://img.shields.io/badge/docker-2496ED?style=flat-square&logo=docker&logoColor=white
+[Docker-logo]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 [Docker-url]: https://www.docker.com
+[MySQL-logo]: https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white
+[MySQL-url]: https://www.mysql.com
+[Express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[Express-url]: https://expressjs.com
+[Sequelize-logo]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white
+[Sequelize-url]: https://sequelize.org
+[JWT-logo]: https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens
+[JWT-url]: https://jwt.io/  
+[Nodemon-logo]: https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge
+[Nodemon-url]: https://www.npmjs.com/package/nodemon
+[ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
+[ESLint-url]: https://eslint.org/
