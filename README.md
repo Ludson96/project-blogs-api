@@ -15,6 +15,7 @@
 [![Sequelize][Sequelize-logo]][Sequelize-url]
 [![JWT][JWT-logo]][JWT-url]
 [![Docker][Docker-logo]][Docker-url]
+[![.ENV][.ENV-logo]][.ENV-url]
 [![Nodemon][Nodemon-logo]][Nodemon-url]
 [![ESLint][ESLint-logo]][ESLint-url]
 ## O que foi desenvolvido
@@ -322,3 +323,5 @@ Outra forma de executar é utilizando o `nodemom` (permite fazer alteração em 
 [Nodemon-url]: https://www.npmjs.com/package/nodemon
 [ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
 [ESLint-url]: https://eslint.org/
+[.ENV-logo]: https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge
+[.ENV-url]: https://www.npmjs.com/package/dotenv
