@@ -3,8 +3,9 @@
  
   Repositório possui projeto desenvolvido no período que estive na <b>Trybe</b>, abordando os conceitos de <b>RESTFul API</b> com CRUD completo utilizando arquitetura Model-Service-Controller (MSC). 
 ## Informações de aprendizados
-- Este é um projeto desenvolvido para me ajudar a aprender sobre `sequelize` e `JWT`.
-- Meu primeiro projeto usando `sequelize` e `JWT`
+- Este é um projeto desenvolvido para me ajudar a aprender sobre `sequelize` e `JWT`;
+- Meu primeiro projeto usando `sequelize` e `JWT`;
+- Utilizei o Cliente Rest `Thunder Client`, como extensão, para visualizar o retorno do meu acesso.
 ## Linguagem usadas
 
 [![JavaScript][JavaScript-logo]][JavaScript-url]
